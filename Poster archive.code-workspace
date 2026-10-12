@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Mext Board"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Mext Board"
+	}
+}

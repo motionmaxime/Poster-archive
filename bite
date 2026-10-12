@@ -1,0 +1,57 @@
+document.body.style.overflow = "hidden";
+
+const tl = gsap.timeline();
+
+// 1. Le bloc arrive (de gauche à droite)
+tl.to(".block", { 
+    scaleX: 1, 
+    duration: 0.6, 
+    ease: "expo.inOut", 
+    transformOrigin: "left" 
+})
+// 2. On affiche Maxime POMMIER derrière le bloc
+.set(".text-1", { opacity: 1 }) 
+// 3. Le bloc repart (vers la droite), dévoilant le texte
+.to(".block", { 
+    scaleX: 0, 
+    duration: 0.6, 
+    ease: "expo.inOut", 
+    transformOrigin: "right" 
+})
+// 4. PAUSE pour lire (1.2 secondes)
+.to({}, { duration: 0.8 }) 
+
+// 5. Le bloc REVIENT (de droite à gauche) pour recouvrir le texte 1
+.to(".block", { 
+    scaleX: 1, 
+    duration: 0.6, 
+    ease: "expo.inOut", 
+    transformOrigin: "right" 
+})
+// 6. L'échange secret : on cache texte 1, on affiche texte 2
+.set(".text-1", { opacity: 0 })
+.set(".text-2", { opacity: 1 })
+// 7. Le bloc repart (vers la gauche), dévoilant "Poster archive"
+.to(".block", { 
+    scaleX: 0, 
+    duration: 0.6, 
+    ease: "expo.inOut", 
+    transformOrigin: "left" 
+})
+// 8. PAUSE pour lire (1.2 secondes)
+.to({}, { duration: 1.2 })
+
+// 9. L'écran noir glisse vers le haut pour révéler le site
+.to(".intro-overlay", { 
+    xPercent: -100, 
+    duration: 1, 
+    ease: "expo.inOut" 
+})
+// 10. Apparition du contenu du site
+.to(".site-content", { 
+    opacity: 1, 
+    autoAlpha: 1, 
+    duration: 0.8 
+}, "-=0.5")
+.eventCallback("onComplete", () => {
+    document.body.style.overflow = "auto";

@@ -1,0 +1,291 @@
+
+/* ============================================================
+   1. RESET
+   ============================================================ */:root {
+    --dark: #000000;
+    --light: #EAE0D2;
+    --low: #8E857D;
+    --mid: #C4B4A8;
+
+    --font-main: 'hanken', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+     margin: 0;
+    padding: 0;
+    scrollbar-color: var(--light);
+    scrollbar-width: thin;
+}
+body {
+     background-color: var(--dark);
+     color: var(--light);
+     display: flex;
+     flex-direction: column;
+     justify-content: end;
+     min-height: 100vh;
+     overflow: hidden;
+
+}
+
+/* ============================================================
+   2. TYPOGRAPHY
+   ============================================================ */
+@font-face {
+      font-family: 'hanken';
+      src: url('../fonts/HankenGrotesk-VariableFont_wght.ttf');
+     font-weight: 100 900;
+     font-style: normal;
+     font-display: swap;
+}
+
+@font-face {
+    font-family: 'hanken-italic';
+     src: url('../fonts/HankenGrotesk-Italic-VariableFont_wght.ttf');
+     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1, h2, h3, p, a, button, span, .copyright {
+     font-family: var(--font-main);
+     color: var(--dark-to-light);
+     font-weight: 300;
+}
+
+h1{
+     font-size: clamp(0.8rem, 1.5vw + 0.5rem, 1.2rem);
+}
+p, a, button{
+    font-size: clamp(0.6rem, 1.5vw + 0.5rem, 0.9rem);
+}
+p {
+    max-width: 65ch;
+    line-height: 2;
+}
+a {
+    text-decoration: none; 
+}
+button{
+    background: none;
+    outline: none;
+    border: none;
+}
+span{
+    font-size: clamp(0.8rem, 0.96rem + 0.18vw, 1rem);
+    letter-spacing: 2px;
+}
+svg{
+    fill: var(--light);
+}
+
+::selection {
+    background: var(--light);
+    color: var(--low);
+}
+/* ============================================================
+   3. NAV
+   ============================================================ */
+nav{
+    padding: 2rem;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo p{margin-left: 1rem;
+}
+.rsn a{
+    padding: 0.5rem;
+}
+nav a:hover, button:hover{
+    text-decoration: line-through   ;
+}
+/* ============================================================
+   4. CAROUSSEL
+   ============================================================ */
+main{
+    margin-left: 2rem;
+    height: 100%;
+}
+ 
+.poster-caroussel {
+    display: flex;
+    width: 100%;
+    position: relative;
+    cursor: grab;
+    margin-bottom: 3rem;
+}
+
+.carousel-track {
+    display: flex;
+    flex: 0 0 auto;
+    will-change: transform;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe;
+    height: 63vh;
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0.5rem;
+    will-change: opacity, transform;
+}
+
+.card img {
+    -webkit-user-drag: none; 
+    user-select: none;     
+    pointer-events: none;  
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.card span{
+    margin-top: 1rem;
+}
+
+
+.poster-caroussel:active {
+    cursor: grabbing;
+}
+
+.progress-bar {
+    width: 100%; 
+    height: 2px;
+    background-color: var(--low); 
+    margin: 0 auto; 
+    position: relative;
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+
+.progress {
+    display: block;
+    height: 3px;
+    width: 0%; /* Sera modifié par le JS */
+    background-color: var(--light); /* Couleur de remplissage (claire) */
+    will-change: width;
+}
+.side-bar{
+    height: 94%;
+    width: 1px;
+    background-color: var(--light);
+    margin: 0 auto; 
+    position: absolute;
+    margin-left: 2rem;
+    bottom: 0;
+}
+
+/* ============================================================
+   5. FOOTER
+   ============================================================ */
+footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    bottom: 0;
+    right: 0;
+    padding: 1rem  3rem 1rem 3rem;
+    color: var(--low);
+}
+.footer-menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+footer a, div, #year{
+    font-size: 12px;
+}
+.footer-menu span{
+    margin: 0 1rem ;
+}
+footer a:hover{
+    text-decoration: line-through   ;
+}
+#year{
+    margin: 0;
+}
+
+/* ============================================================
+   6. INTRO ANIMATION (BLOCK REVEAL)
+   ============================================================ */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reveal-container {
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding: 0 10px; /* Ajoute un léger débordement pour que le bloc respire */
+}
+
+.intro-text {
+    grid-area: 1 / 1; /* Superpose les textes dans la même cellule de grille */
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0; /* Caché au début */
+}
+
+.block {
+    grid-area: 1 / 1; /* Superpose le bloc par-dessus les textes */
+    width: 100%;
+    height: 100%;
+    background-color: var(--light);
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 2;
+}
+
+.site-content {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* Galerie à la ligne verticale ; pied de page décalé de 24 px. */
+:root { --page-inset: 2rem; }
+main { margin-left: var(--page-inset); overflow: hidden; padding-top: 48px; }
+.poster-caroussel { touch-action: pan-y; }
+.card { width: min(37vw, 44vh); height: auto; }
+.card img { height: 60vh; object-fit: contain; }
+.card span { overflow-wrap: anywhere; }
+footer { padding-left: calc(var(--page-inset) + 24px); padding-right: var(--page-inset); }
+.progress { margin: 0; height: 100%; transition: width .3s ease; }
+.side-bar { pointer-events: none; margin-left: var(--page-inset); }
+.footer-menu > .legal { margin-left: 0; }
+a, button { color: inherit; }
+@media (max-width: 640px) {
+    :root { --page-inset: 1rem; }
+    nav { padding: 1rem; flex-wrap: wrap; gap: 16px; }
+    .logo p { margin-left: .5rem; }
+    .logo svg { width: 32px; }
+    nav h1 { order: 3; width: 100%; }
+    .rsn a { padding: .2rem; }
+    .card { width: 72vw; }
+    .card img { height: 52vh; }
+    .footer-menu { flex-wrap: wrap; gap: 12px; }
+    .footer-menu span { margin-right: .4rem; }
+    .poster-caroussel { margin-bottom: 1rem; }
+}

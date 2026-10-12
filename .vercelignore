@@ -1,0 +1,8 @@
+.env
+.env.*
+data/
+__pycache__/
+.git/
+.DS_Store
+*.code-workspace
+bite
