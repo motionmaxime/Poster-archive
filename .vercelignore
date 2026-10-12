@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 *.code-workspace
 bite
+server.py
+node_modules/
+public/
+tests/

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "seed-0",
+    "name": "Golden ratio",
+    "date": "2025",
+    "image": "/img/poster/Golden-ratio.png"
+  },
+  {
+    "id": "seed-1",
+    "name": "Dors ou meurs",
+    "date": "2025",
+    "image": "/img/poster/dors-ou-meurs.png"
+  },
+  {
+    "id": "seed-2",
+    "name": "Alien 1",
+    "date": "2025",
+    "image": "/img/poster/Echogarphie-Alien.png"
+  },
+  {
+    "id": "seed-3",
+    "name": "Mercedes AMG",
+    "date": "2025",
+    "image": "/img/poster/AMG2.png"
+  },
+  {
+    "id": "seed-4",
+    "name": "This is art",
+    "date": "2025",
+    "image": "/img/poster/This-is-art.png"
+  },
+  {
+    "id": "18f2973a25b9801c31f78aa3a8b9ddcb",
+    "name": "Free",
+    "date": "2026-10-09",
+    "image": "/uploads/18f2973a25b9801c31f78aa3a8b9ddcb.jpg"
+  }
+]

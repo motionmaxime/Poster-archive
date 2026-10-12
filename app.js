@@ -3,7 +3,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 async function initializeArchive() {
     const carousel = document.querySelector('.poster-caroussel');
     try {
-        const response = await fetch('/api/posters');
+        let response;
+        try {
+            response = await fetch('/api/posters', {signal:AbortSignal.timeout(6000)});
+            if (!response.ok) throw new Error('Archive unavailable');
+        } catch {
+            response = await fetch('/posters.json', {signal:AbortSignal.timeout(3000)});
+        }
         if (!response.ok) throw new Error('Archive unavailable');
         const posters = await response.json();
         if (posters.length) carousel.replaceChildren(...posters.map(poster => {
@@ -17,7 +23,7 @@ async function initializeArchive() {
     if (!originals.length) return;
     const track = document.createElement('div'); track.className = 'carousel-track';
     // Assez de copies pour remplir aussi un grand écran avec une seule affiche.
-    const copies = Math.max(4, Math.ceil(window.innerWidth / originals[0].offsetWidth / originals.length) + 3);
+    const copies = Math.max(4, Math.ceil(window.innerWidth / (originals[0].offsetWidth || 320) / originals.length) + 3);
     for (let copy = 0; copy < copies; copy++) originals.forEach((card, index) => {
         const clone = card.cloneNode(true); clone.dataset.index = index;
         if (copy !== 1) clone.setAttribute('aria-hidden', 'true');
